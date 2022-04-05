@@ -1,0 +1,397 @@
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (87.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (85.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220404220527)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password" varchar, "phone" varchar, "cpf" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220404220527"]]
+  [1m[36mTRANSACTION (90.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-04-04 22:05:41.810087"], ["updated_at", "2022-04-04 22:05:41.810087"]]
+  [1m[36mTRANSACTION (62.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users" for 127.0.0.1 at 2022-04-04 19:15:02 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87", "user"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password", "phone", "cpf", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Felipe"], ["email", "fgscarvalho97@gmail.com"], ["password", "[FILTERED]"], ["phone", "+55 61 98444-6914"], ["cpf", "06233322-87"], ["created_at", "2022-04-04 22:15:02.297327"], ["updated_at", "2022-04-04 22:15:02.297327"]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (58.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+Completed 201 Created in 79ms (Views: 1.8ms | ActiveRecord: 59.1ms | Allocations: 11577)
+
+
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAddresses (20220404222415)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "cep" varchar, "street" varchar, "neighborhood" varchar, "city" varchar, "state" varchar, "country" varchar, "complement" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220404222415"]]
+  [1m[36mTRANSACTION (117.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:38:47 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AddressesController#create as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" "}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/addresses_controller.rb:20:in `create'
+  [1m[36mAddress Create (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("cep", "street", "neighborhood", "city", "state", "country", "complement", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["cep", "71880-680"], ["street", "QN 29 Conjunto 6 cas 6"], ["neighborhood", "Riacho Fundo 2"], ["city", nil], ["state", "Distrito Federal"], ["country", "Brasil"], ["complement", " "], ["created_at", "2022-04-04 22:38:47.740825"], ["updated_at", "2022-04-04 22:38:47.740825"]]
+  ↳ app/controllers/addresses_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (82.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/addresses_controller.rb:20:in `create'
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 83.6ms | Allocations: 13819)
+
+
+  
+NoMethodError (undefined method `address_url' for #<AddressesController:0x00000000008f20>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+  
+app/controllers/addresses_controller.rb:21:in `create'
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:41:47 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AddressesController#create as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" "}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.8ms | Allocations: 2268)
+
+
+  
+NoMethodError (undefined method `println' for #<AddressesController:0x0000000000ceb8>
+
+    println "*****************************"
+    ^^^^^^^
+Did you mean?  print
+               printf):
+  
+app/controllers/addresses_controller.rb:18:in `create'
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:43:02 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AddressesController#create as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" "}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/addresses_controller.rb:24:in `create'
+  [1m[36mAddress Create (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("cep", "street", "neighborhood", "city", "state", "country", "complement", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["cep", "71880-680"], ["street", "QN 29 Conjunto 6 cas 6"], ["neighborhood", "Riacho Fundo 2"], ["city", nil], ["state", "Distrito Federal"], ["country", "Brasil"], ["complement", " "], ["created_at", "2022-04-04 22:43:02.872039"], ["updated_at", "2022-04-04 22:43:02.872039"]]
+  ↳ app/controllers/addresses_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (99.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/addresses_controller.rb:24:in `create'
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 100.6ms | Allocations: 7337)
+
+
+  
+NoMethodError (undefined method `address_url' for #<AddressesController:0x00000000010e50>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+  
+app/controllers/addresses_controller.rb:25:in `create'
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:45:05 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AddressesController#create as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" "}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mAddress Create (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("cep", "street", "neighborhood", "city", "state", "country", "complement", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["cep", "71880-680"], ["street", "QN 29 Conjunto 6 cas 6"], ["neighborhood", "Riacho Fundo 2"], ["city", nil], ["state", "Distrito Federal"], ["country", "Brasil"], ["complement", " "], ["created_at", "2022-04-04 22:45:05.153917"], ["updated_at", "2022-04-04 22:45:05.153917"]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (84.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 99ms (ActiveRecord: 85.0ms | Allocations: 7163)
+
+
+  
+NoMethodError (undefined method `address_url' for #<AddressesController:0x00000000014e10>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+  
+app/controllers/addresses_controller.rb:24:in `create'
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:45:38 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AddressesController#create as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" "}}
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.7ms | Allocations: 6918)
+
+
+  
+NoMethodError (undefined method `user_id' for #<Address id: nil, cep: "71880-680", street: "QN 29 Conjunto 6 cas 6", neighborhood: "Riacho Fundo 2", city: nil, state: "Distrito Federal", country: "Brasil", complement: " ", created_at: nil, updated_at: nil>
+Did you mean?  user):
+  
+app/controllers/addresses_controller.rb:21:in `create'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserToAddress (20220404224800)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aaddresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aaddresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at" FROM "addresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "addresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at" FROM "aaddresses"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:50:38 -0300
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AddressesController#create as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" "}}
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.5ms | Allocations: 12557)
+
+
+  
+NoMethodError (undefined method `user_id' for #<Address id: nil, cep: "71880-680", street: "QN 29 Conjunto 6 cas 6", neighborhood: "Riacho Fundo 2", city: nil, state: "Distrito Federal", country: "Brasil", complement: " ", created_at: nil, updated_at: nil>
+Did you mean?  user):
+  
+app/controllers/addresses_controller.rb:21:in `create'
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:50:56 -0300
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AddressesController#create as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" "}}
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 6.4ms | Allocations: 6929)
+
+
+  
+NoMethodError (undefined method `user_id' for #<Address id: nil, cep: "71880-680", street: "QN 29 Conjunto 6 cas 6", neighborhood: "Riacho Fundo 2", city: nil, state: "Distrito Federal", country: "Brasil", complement: " ", created_at: nil, updated_at: nil>
+Did you mean?  user):
+  
+app/controllers/addresses_controller.rb:21:in `create'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserToAddress (20220404225206)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aaddresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aaddresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at" FROM "addresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "addresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at" FROM "aaddresses"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (72.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (75.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220404220527)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password" varchar, "phone" varchar, "cpf" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220404220527"]]
+  [1m[36mTRANSACTION (73.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAddresses (20220404222415)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "cep" varchar, "street" varchar, "neighborhood" varchar, "city" varchar, "state" varchar, "country" varchar, "complement" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220404222415"]]
+  [1m[36mTRANSACTION (78.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToAddress (20220404225206)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aaddresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aaddresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at" FROM "addresses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "addresses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "addresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at" FROM "aaddresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aaddresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_addresses_on_user_id" ON "addresses" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aaddresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "tindex_aaddresses_on_user_id" ON "aaddresses" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aaddresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at","user_id")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at","user_id" FROM "addresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "addresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_48c9e0c5a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_addresses_on_user_id" ON "addresses" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "addresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at","user_id")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at","user_id" FROM "aaddresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aaddresses"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220404225206"]]
+  [1m[36mTRANSACTION (99.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-04-04 22:53:43.438928"], ["updated_at", "2022-04-04 22:53:43.438928"]]
+  [1m[36mTRANSACTION (55.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/1" for 127.0.0.1 at 2022-04-04 19:54:26 -0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.8ms | Allocations: 1768)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:44:in `set_user'
+Started POST "/users" for 127.0.0.1 at 2022-04-04 19:54:36 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87", "user"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password", "phone", "cpf", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Felipe"], ["email", "fgscarvalho97@gmail.com"], ["password", "[FILTERED]"], ["phone", "+55 61 98444-6914"], ["cpf", "06233322-87"], ["created_at", "2022-04-04 22:54:36.830001"], ["updated_at", "2022-04-04 22:54:36.830001"]]
+  ↳ app/controllers/users_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (58.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:20:in `create'
+Completed 201 Created in 74ms (Views: 0.5ms | ActiveRecord: 59.2ms | Allocations: 9041)
+
+
+Started POST "/users/1/address" for 127.0.0.1 at 2022-04-04 19:54:55 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/users/1/address"):
+  
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:55:04 -0300
+Processing by AddressesController#create as */*
+  Parameters: {"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" "}}
+Completed 422 Unprocessable Entity in 13ms (Views: 3.3ms | ActiveRecord: 0.6ms | Allocations: 8822)
+
+
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:55:40 -0300
+Processing by AddressesController#create as */*
+  Parameters: {"user_id"=>"1", "cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1"}}
+[31mUnpermitted parameter: :user_id. Context: { controller: AddressesController, action: create, request: #<ActionDispatch::Request:0x00007f37b4b1ef20>, params: {"user_id"=>"1", "cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "controller"=>"addresses", "action"=>"create", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1"}} }[0m
+Completed 422 Unprocessable Entity in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 808)
+
+
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:57:18 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AddressesController#create as */*
+  Parameters: {"user_id"=>"1", "cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mAddress Create (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("cep", "street", "neighborhood", "city", "state", "country", "complement", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["cep", "71880-680"], ["street", "QN 29 Conjunto 6 cas 6"], ["neighborhood", "Riacho Fundo 2"], ["city", nil], ["state", "Distrito Federal"], ["country", "Brasil"], ["complement", " "], ["created_at", "2022-04-04 22:57:18.488922"], ["updated_at", "2022-04-04 22:57:18.488922"], ["user_id", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (109.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 139ms (ActiveRecord: 110.7ms | Allocations: 14529)
+
+
+  
+NoMethodError (undefined method `address_url' for #<AddressesController:0x0000000000d1d8>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+  
+app/controllers/addresses_controller.rb:24:in `create'
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:57:58 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AddressesController#create as */*
+  Parameters: {"user_id"=>"1", "cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mAddress Create (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("cep", "street", "neighborhood", "city", "state", "country", "complement", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["cep", "71880-680"], ["street", "QN 29 Conjunto 6 cas 6"], ["neighborhood", "Riacho Fundo 2"], ["city", nil], ["state", "Distrito Federal"], ["country", "Brasil"], ["complement", " "], ["created_at", "2022-04-04 22:57:58.781760"], ["updated_at", "2022-04-04 22:57:58.781760"], ["user_id", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (155.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 176ms (ActiveRecord: 156.9ms | Allocations: 11746)
+
+
+  
+NoMethodError (undefined method `address_url' for #<AddressesController:0x000000000111c0>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+  
+app/controllers/addresses_controller.rb:24:in `create'
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:58:23 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AddressesController#create as */*
+  Parameters: {"user_id"=>"1", "cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mAddress Create (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("cep", "street", "neighborhood", "city", "state", "country", "complement", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["cep", "71880-680"], ["street", "QN 29 Conjunto 6 cas 6"], ["neighborhood", "Riacho Fundo 2"], ["city", nil], ["state", "Distrito Federal"], ["country", "Brasil"], ["complement", " "], ["created_at", "2022-04-04 22:58:23.968034"], ["updated_at", "2022-04-04 22:58:23.968034"], ["user_id", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (75.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 77.3ms | Allocations: 12163)
+
+
+  
+NoMethodError (undefined method `address_url' for #<AddressesController:0x000000000151d0>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+  
+app/controllers/addresses_controller.rb:24:in `create'
+Started POST "/users/1/addresses" for 127.0.0.1 at 2022-04-04 19:59:18 -0300
+Processing by AddressesController#create as */*
+  Parameters: {"user_id"=>"1", "cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "city"=>"Brasilia", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "address"=>{"cep"=>"71880-680", "street"=>"QN 29 Conjunto 6 cas 6", "neighborhood"=>"Riacho Fundo 2", "city"=>"Brasilia", "state"=>"Distrito Federal", "country"=>"Brasil", "complement"=>" ", "user_id"=>"1"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mAddress Create (0.3ms)[0m  [1m[32mINSERT INTO "addresses" ("cep", "street", "neighborhood", "city", "state", "country", "complement", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["cep", "71880-680"], ["street", "QN 29 Conjunto 6 cas 6"], ["neighborhood", "Riacho Fundo 2"], ["city", "Brasilia"], ["state", "Distrito Federal"], ["country", "Brasil"], ["complement", " "], ["created_at", "2022-04-04 22:59:18.989466"], ["updated_at", "2022-04-04 22:59:18.989466"], ["user_id", 1]]
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (75.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/addresses_controller.rb:23:in `create'
+Completed 500 Internal Server Error in 95ms (ActiveRecord: 75.5ms | Allocations: 6145)
+
+
+  
+NoMethodError (undefined method `address_url' for #<AddressesController:0x00000000015298>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+  
+app/controllers/addresses_controller.rb:24:in `create'
