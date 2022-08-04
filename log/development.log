@@ -395,3 +395,1429 @@ NoMethodError (undefined method `address_url' for #<AddressesController:0x000000
                     ^^^^^^^^^^^^):
   
 app/controllers/addresses_controller.rb:24:in `create'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddDeviseToUsers (20220407000545)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "email" varchar DEFAULT '' NOT NULL[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (82.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (70.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220404220527)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone" varchar, "cpf" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220404220527"]]
+  [1m[36mTRANSACTION (97.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAddresses (20220404222415)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "cep" varchar, "street" varchar, "neighborhood" varchar, "city" varchar, "state" varchar, "country" varchar, "complement" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220404222415"]]
+  [1m[36mTRANSACTION (112.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToAddress (20220404225206)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aaddresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "aaddresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at" FROM "addresses"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "addresses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "addresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at" FROM "aaddresses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aaddresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_addresses_on_user_id" ON "addresses" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aaddresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aaddresses_on_user_id" ON "aaddresses" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aaddresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at","user_id")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at","user_id" FROM "addresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "addresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" integer NOT NULL PRIMARY KEY, "cep" varchar DEFAULT NULL, "street" varchar DEFAULT NULL, "neighborhood" varchar DEFAULT NULL, "city" varchar DEFAULT NULL, "state" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "complement" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_48c9e0c5a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_addresses_on_user_id" ON "addresses" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "addresses" ("id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at","user_id")
+                     SELECT "id","cep","street","neighborhood","city","state","country","complement","created_at","updated_at","user_id" FROM "aaddresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aaddresses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220404225206"]]
+  [1m[36mTRANSACTION (80.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDeviseToUsers (20220407000545)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "users" ADD "email" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "encrypted_password" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" varchar[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" datetime(6)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_created_at" datetime(6)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220407000545"]]
+  [1m[36mTRANSACTION (82.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-04-07 00:08:08.794848"], ["updated_at", "2022-04-07 00:08:08.794848"]]
+  [1m[36mTRANSACTION (42.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/users" for 127.0.0.1 at 2022-04-06 21:43:48 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::RegistrationsController#create as JSON
+  Parameters: {"users"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "registration"=>{"users"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 422 Unprocessable Entity in 32ms (Views: 6.6ms | ActiveRecord: 0.7ms | Allocations: 17111)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-04-06 21:44:22 -0300
+Processing by Devise::RegistrationsController#create as JSON
+  Parameters: {"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87", "registration"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 422 Unprocessable Entity in 5ms (Views: 0.9ms | ActiveRecord: 0.2ms | Allocations: 3769)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-04-06 21:46:43 -0300
+Processing by Devise::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"name"=>"Thalisson3", "email"=>"thalisson.melo3@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "registration"=>{"user"=>{"name"=>"Thalisson3", "email"=>"thalisson.melo3@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}}
+[31mUnpermitted parameters: :name, :phone, :cpf. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007f7d7ad7d350>, params: {"user"=>{"name"=>"Thalisson3", "email"=>"thalisson.melo3@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "format"=>:json, "controller"=>"devise/registrations", "action"=>"create", "registration"=>{"user"=>{"name"=>"Thalisson3", "email"=>"thalisson.melo3@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "thalisson.melo3@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "thalisson.melo3@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "phone", "cpf", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", nil], ["phone", nil], ["cpf", nil], ["created_at", "2022-04-07 00:46:43.650495"], ["updated_at", "2022-04-07 00:46:43.650495"], ["email", "thalisson.melo3@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil]]
+  [1m[36mTRANSACTION (79.8ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 335ms (ActiveRecord: 80.2ms | Allocations: 8143)
+
+
+  
+ActionDispatch::Request::Session::DisabledSessionError (Your application has sessions disabled. To write to the session you must first configure a session store):
+  
+actionpack (7.0.2.3) lib/action_dispatch/request/session.rb:253:in `load_for_write!'
+actionpack (7.0.2.3) lib/action_dispatch/request/session.rb:151:in `[]='
+warden (1.2.9) lib/warden/session_serializer.rb:27:in `store'
+warden (1.2.9) lib/warden/proxy.rb:187:in `set_user'
+devise (4.8.1) lib/devise/controllers/sign_in_out.rb:53:in `sign_in'
+devise (4.8.1) app/controllers/devise/registrations_controller.rb:106:in `sign_up'
+devise (4.8.1) app/controllers/devise/registrations_controller.rb:24:in `create'
+actionpack (7.0.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (7.0.2.3) lib/abstract_controller/base.rb:214:in `process_action'
+actionpack (7.0.2.3) lib/action_controller/metal/rendering.rb:53:in `process_action'
+actionpack (7.0.2.3) lib/abstract_controller/callbacks.rb:234:in `block in process_action'
+activesupport (7.0.2.3) lib/active_support/callbacks.rb:107:in `run_callbacks'
+actionpack (7.0.2.3) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.2.3) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.2.3) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.2.3) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.2.3) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.2.3) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.2.3) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.2.3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.2.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.2.3) lib/abstract_controller/base.rb:151:in `process'
+actionpack (7.0.2.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.2.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/routing/mapper.rb:18:in `block in <class:Constraints>'
+actionpack (7.0.2.3) lib/action_dispatch/routing/mapper.rb:48:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:850:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (7.0.2.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.2.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.2.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (7.0.2.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.2.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/server_timing.rb:20:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.2.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/api/users" for 127.0.0.1 at 2022-04-06 21:48:07 -0300
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"name"=>"Thalisson3", "email"=>"thalisson.melo3@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "registration"=>{"user"=>{"name"=>"Thalisson3", "email"=>"thalisson.melo3@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}}
+[31mUnpermitted parameters: :name, :phone, :cpf. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fee70e543e8>, params: {"user"=>{"name"=>"Thalisson3", "email"=>"thalisson.melo3@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "format"=>:json, "controller"=>"devise/registrations", "action"=>"create", "registration"=>{"user"=>{"name"=>"Thalisson3", "email"=>"thalisson.melo3@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "thalisson.melo3@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "thalisson.melo3@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 422 Unprocessable Entity in 238ms (Views: 1.7ms | ActiveRecord: 0.9ms | Allocations: 16960)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-04-06 21:48:50 -0300
+Processing by Devise::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"name"=>"Thais", "email"=>"thais10f17@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "registration"=>{"user"=>{"name"=>"Thais", "email"=>"thais10f17@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}}
+[31mUnpermitted parameters: :name, :phone, :cpf. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fee71d549b0>, params: {"user"=>{"name"=>"Thais", "email"=>"thais10f17@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "format"=>:json, "controller"=>"devise/registrations", "action"=>"create", "registration"=>{"user"=>{"name"=>"Thais", "email"=>"thais10f17@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "thais10f17@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "thais10f17@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "phone", "cpf", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", nil], ["phone", nil], ["cpf", nil], ["created_at", "2022-04-07 00:48:50.207310"], ["updated_at", "2022-04-07 00:48:50.207310"], ["email", "thais10f17@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil]]
+  [1m[36mTRANSACTION (63.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 201 Created in 271ms (Views: 0.6ms | ActiveRecord: 63.9ms | Allocations: 6421)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-04-06 21:52:03 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"thais10f17@gamil.com", "password"=>"[FILTERED]", "session"=>{"email"=>"thais10f17@gamil.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 422 Unprocessable Entity in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 2975)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-04-06 21:52:25 -0300
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"thais10f17@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"thais10f17@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 422 Unprocessable Entity in 2ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 805)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-04-06 21:53:09 -0300
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"thais10f17@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"thais10f17@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "thais10f17@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  Rendering devise/sessions/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.6ms | Allocations: 559)
+  Rendered devise/sessions/create.json.jbuilder (Duration: 1.8ms | Allocations: 1335)
+Completed 200 OK in 203ms (Views: 4.8ms | ActiveRecord: 0.7ms | Allocations: 12226)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2022-04-06 21:57:11 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2", "user"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.7ms | Allocations: 991)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2022-04-06 22:01:00 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 215)
+  Rendered users/show.json.jbuilder (Duration: 4.4ms | Allocations: 2032)
+Completed 200 OK in 10ms (Views: 4.9ms | ActiveRecord: 1.0ms | Allocations: 6460)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2022-04-06 22:01:24 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.4ms | Allocations: 145)
+  Rendered users/show.json.jbuilder (Duration: 2.9ms | Allocations: 1213)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.2ms | Allocations: 1974)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2022-04-06 22:01:28 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 145)
+  Rendered users/show.json.jbuilder (Duration: 1.5ms | Allocations: 1204)
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 1929)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2022-04-06 22:01:40 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:24:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.4ms | Allocations: 143)
+  Rendered users/show.json.jbuilder (Duration: 3.1ms | Allocations: 1201)
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.2ms | Allocations: 1923)
+
+
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProduct (20220623223359)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "products" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image" varchar, "name" varchar, "price" varchar, "quantity" varchar, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220623223359"]]
+  [1m[36mTRANSACTION (83.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started GET "/" for 127.0.0.1 at 2022-06-23 19:54:24 -0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.0ms | Allocations: 526)
+Completed 200 OK in 33ms (Views: 4.6ms | ActiveRecord: 0.0ms | Allocations: 3929)
+
+
+Started GET "/rails/info/" for 127.0.0.1 at 2022-06-23 19:54:49 -0300
+Processing by Rails::InfoController#index as HTML
+Redirected to http://127.0.0.1:3000/rails/info/routes
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 1036)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 19:54:49 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [53 times] (Duration: 29.3ms | Allocations: 8794)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 30.8ms | Allocations: 1214)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 67.3ms | Allocations: 15046)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 69.5ms | Allocations: 15389)
+Completed 200 OK in 76ms (Views: 74.0ms | ActiveRecord: 0.0ms | Allocations: 16295)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2022-06-23 19:54:49 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 19:57:02 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/api/products"):
+  
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 19:57:38 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [53 times] (Duration: 9.5ms | Allocations: 8374)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 1.2ms | Allocations: 121)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 13.4ms | Allocations: 13086)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 13.7ms | Allocations: 13185)
+Completed 200 OK in 14ms (Views: 14.1ms | Allocations: 13510)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 19:57:44 -0300
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for ProductsController):
+  
+actionpack (7.0.2.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.2.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.2.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.2.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:850:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/cookies.rb:693:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (7.0.2.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.2.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.2.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (7.0.2.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.2.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/server_timing.rb:20:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.2.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 19:58:02 -0300
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for ProductsController):
+  
+actionpack (7.0.2.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.2.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.2.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.2.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:850:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/cookies.rb:693:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (7.0.2.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.2.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.2.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (7.0.2.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.2.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/server_timing.rb:20:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.2.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 19:59:14 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [54 times] (Duration: 9.8ms | Allocations: 8962)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 1.3ms | Allocations: 1047)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 14.1ms | Allocations: 15364)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 14.8ms | Allocations: 15711)
+Completed 200 OK in 20ms (Views: 16.8ms | Allocations: 18656)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 20:00:31 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [54 times] (Duration: 9.3ms | Allocations: 8804)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.9ms | Allocations: 790)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 12.8ms | Allocations: 14610)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 13.3ms | Allocations: 14908)
+Completed 200 OK in 15ms (Views: 14.3ms | Allocations: 15761)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 20:00:39 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [54 times] (Duration: 12.2ms | Allocations: 8468)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.6ms | Allocations: 103)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 15.8ms | Allocations: 13229)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 16.0ms | Allocations: 13327)
+Completed 200 OK in 17ms (Views: 16.4ms | Allocations: 13616)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 20:02:08 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [55 times] (Duration: 8.9ms | Allocations: 8680)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.6ms | Allocations: 121)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 11.6ms | Allocations: 13552)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 11.7ms | Allocations: 13652)
+Completed 200 OK in 12ms (Views: 12.0ms | Allocations: 13979)
+
+
+Started GET "/" for 127.0.0.1 at 2022-06-23 20:02:34 -0300
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for ProductsController):
+  
+actionpack (7.0.2.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.2.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.2.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.2.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.2.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.2.3) lib/action_dispatch/routing/route_set.rb:850:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/cookies.rb:693:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (7.0.2.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.2.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.2.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (7.0.2.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.2.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.2.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/server_timing.rb:20:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.2.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.2.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 20:03:14 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [53 times] (Duration: 8.5ms | Allocations: 8374)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.2ms | Allocations: 121)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 11.3ms | Allocations: 13098)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 11.7ms | Allocations: 13197)
+Completed 200 OK in 12ms (Views: 12.0ms | Allocations: 13521)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 20:12:08 -0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [53 times] (Duration: 8.5ms | Allocations: 8809)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 1.6ms | Allocations: 1047)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 12.8ms | Allocations: 15127)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 13.3ms | Allocations: 15474)
+Completed 200 OK in 18ms (Views: 14.7ms | ActiveRecord: 0.0ms | Allocations: 18661)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 20:12:14 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [53 times] (Duration: 21.1ms | Allocations: 8648)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 1.3ms | Allocations: 790)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 28.4ms | Allocations: 14355)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 29.0ms | Allocations: 14653)
+Completed 200 OK in 32ms (Views: 30.7ms | ActiveRecord: 0.0ms | Allocations: 15515)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 20:16:09 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [53 times] (Duration: 7.8ms | Allocations: 8375)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.2ms | Allocations: 121)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 9.7ms | Allocations: 13092)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 9.8ms | Allocations: 13192)
+Completed 200 OK in 10ms (Views: 10.0ms | Allocations: 13519)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 20:16:58 -0300
+  
+ActionController::RoutingError (uninitialized constant ProductController
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  ProductsController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-06-23 20:20:09 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [53 times] (Duration: 7.6ms | Allocations: 8376)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.2ms | Allocations: 121)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 9.8ms | Allocations: 13096)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 9.9ms | Allocations: 13195)
+Completed 200 OK in 10ms (Views: 10.2ms | Allocations: 13519)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 20:20:19 -0300
+Processing by ProductsController#index as JSON
+No template found for ProductsController#index, rendering head :no_content
+Completed 204 No Content in 42ms (Allocations: 1799)
+
+
+Started POST "/api/products" for 127.0.0.1 at 2022-06-23 20:27:39 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#create as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+No template found for ProductsController#create, rendering head :no_content
+Completed 204 No Content in 0ms (ActiveRecord: 0.7ms | Allocations: 252)
+
+
+Started POST "/api/products" for 127.0.0.1 at 2022-06-23 20:36:06 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#create as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:18:in `create'
+  [1m[36mProduct Create (0.2ms)[0m  [1m[32mINSERT INTO "products" ("image", "name", "price", "quantity", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["image", "fotinha"], ["name", "Docinho"], ["price", "R$ 2,00"], ["quantity", "100 und."], ["description", "Doce artesenal feito com ingredientes selecionados."], ["created_at", "2022-06-23 23:36:07.103714"], ["updated_at", "2022-06-23 23:36:07.103714"]]
+  ↳ app/controllers/products_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (131.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:18:in `create'
+Completed 201 Created in 153ms (Views: 0.9ms | ActiveRecord: 132.1ms | Allocations: 7528)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 20:36:39 -0300
+Processing by ProductsController#index as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+No template found for ProductsController#index, rendering head :no_content
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 209)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 20:36:43 -0300
+Processing by ProductsController#index as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+No template found for ProductsController#index, rendering head :no_content
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 126)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 20:36:44 -0300
+Processing by ProductsController#index as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+No template found for ProductsController#index, rendering head :no_content
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 126)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-06-23 20:37:20 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#index as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/products_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.4ms | ActiveRecord: 0.7ms | Allocations: 3494)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2022-06-23 20:37:44 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/api/products/1"):
+  
+Started GET "/api/product/1" for 127.0.0.1 at 2022-06-23 20:38:02 -0300
+Processing by ProductsController#show as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "id"=>"1", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:31:in `set_product'
+No template found for ProductsController#show, rendering head :no_content
+Completed 204 No Content in 6ms (ActiveRecord: 0.2ms | Allocations: 2467)
+
+
+Started GET "/api/product/1" for 127.0.0.1 at 2022-06-23 20:38:23 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#show as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "id"=>"1", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:31:in `set_product'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 3482)
+
+
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started GET "/" for 127.0.0.1 at 2022-07-05 21:23:24 -0300
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 13.5ms | Allocations: 526)
+Completed 200 OK in 21ms (Views: 15.5ms | ActiveRecord: 0.0ms | Allocations: 3498)
+
+
+Started GET "/rails/info" for 127.0.0.1 at 2022-07-05 21:24:31 -0300
+Processing by Rails::InfoController#index as HTML
+Redirected to http://127.0.0.1:3000/rails/info/routes
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 1038)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-07-05 21:24:31 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [53 times] (Duration: 53.1ms | Allocations: 8796)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 2.8ms | Allocations: 1045)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 76.8ms | Allocations: 14881)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 87.4ms | Allocations: 15224)
+Completed 200 OK in 92ms (Views: 90.7ms | ActiveRecord: 0.0ms | Allocations: 16130)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2022-07-05 21:24:31 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/produts" for 127.0.0.1 at 2022-07-05 21:27:43 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/api/produts"):
+  
+Started POST "/api/products" for 127.0.0.1 at 2022-07-05 21:28:22 -0300
+  
+SyntaxError (/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting `end'
+      render json: errors: @product.errors.full_message...
+                   ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting '='
+...t.errors.full_messages, status: :unprocessable_entity
+...                        ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+      render json: errors: @product.errors.full_message...
+                   ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+...t.errors.full_messages, status: :unprocessable_entity
+...                        ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/api/products" for 127.0.0.1 at 2022-07-05 21:29:38 -0300
+  
+SyntaxError (/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting `end'
+      render json: errors: @product.errors, status: :un...
+                   ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting '='
+...rrors: @product.errors, status: :unprocessable_entity
+...                        ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+      render json: errors: @product.errors.full_message...
+                   ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+...t.errors.full_messages, status: :unprocessable_entity
+...                        ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:12: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/api/products" for 127.0.0.1 at 2022-07-05 21:30:05 -0300
+  
+SyntaxError (/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+      render json: errors: @product.errors.full_message...
+                   ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+...t.errors.full_messages, status: :unprocessable_entity
+...                        ^~~~~~~
+/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting `end'
+app/controllers/products_controller.rb:21: syntax error, unexpected label, expecting '='
+app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/api/products" for 127.0.0.1 at 2022-07-05 21:31:02 -0300
+  
+SyntaxError (/home/felipe/docemania/docemania_api/app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/products_controller.rb:37: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/api/products" for 127.0.0.1 at 2022-07-05 21:31:41 -0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#create as JSON
+  Parameters: {"image"=>"", "name"=>"", "price"=>"", "quantity"=>"", "description"=>"", "product"=>{"image"=>"", "name"=>"", "price"=>"", "quantity"=>"", "description"=>""}}
+Completed 422 Unprocessable Entity in 29ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 7067)
+
+
+Started POST "/api/products" for 127.0.0.1 at 2022-07-05 21:32:38 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#create as JSON
+  Parameters: {"image"=>"", "name"=>"", "price"=>"", "quantity"=>"", "description"=>"", "product"=>{"image"=>"", "name"=>"", "price"=>"", "quantity"=>"", "description"=>""}}
+Completed 422 Unprocessable Entity in 4ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3705)
+
+
+Started POST "/api/products" for 127.0.0.1 at 2022-07-05 21:33:11 -0300
+Processing by ProductsController#create as JSON
+  Parameters: {"image"=>"doce", "name"=>"docinho", "price"=>"", "quantity"=>"", "description"=>"", "product"=>{"image"=>"doce", "name"=>"docinho", "price"=>"", "quantity"=>"", "description"=>""}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:19:in `create'
+  [1m[36mProduct Create (10.1ms)[0m  [1m[32mINSERT INTO "products" ("image", "name", "price", "quantity", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["image", "doce"], ["name", "docinho"], ["price", ""], ["quantity", ""], ["description", ""], ["created_at", "2022-07-06 00:33:11.344231"], ["updated_at", "2022-07-06 00:33:11.344231"]]
+  ↳ app/controllers/products_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (92.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:19:in `create'
+Completed 201 Created in 108ms (Views: 0.8ms | ActiveRecord: 102.8ms | Allocations: 2634)
+
+
+Started GET "/api/product/2" for 127.0.0.1 at 2022-07-05 21:33:42 -0300
+Processing by ProductsController#show as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "id"=>"2", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 2575)
+
+
+Started GET "/api/product/1" for 127.0.0.1 at 2022-07-05 21:33:50 -0300
+Processing by ProductsController#show as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "id"=>"1", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 692)
+
+
+Started PUT "/api/product/1" for 127.0.0.1 at 2022-07-05 21:36:33 -0300
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce", "id"=>"1", "product"=>{"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mProduct Update (0.2ms)[0m  [1m[33mUPDATE "products" SET "image" = ?, "name" = ?, "quantity" = ?, "description" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["image", "Foto 2"], ["name", "Brigadeiro"], ["quantity", "10 und."], ["description", "Aquele doce"], ["updated_at", "2022-07-06 00:36:33.281189"], ["id", 1]]
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mTRANSACTION (70.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+Completed 500 Internal Server Error in 98ms (ActiveRecord: 70.7ms | Allocations: 6103)
+
+
+  
+NoMethodError (undefined method `product_url' for #<ProductsController:0x00000000025490>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^
+Did you mean?  products_url):
+  
+app/controllers/products_controller.rb:10:in `update'
+Started PUT "/api/products/1" for 127.0.0.1 at 2022-07-05 21:40:15 -0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce", "id"=>"1", "product"=>{"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.6ms | Allocations: 7036)
+
+
+  
+NoMethodError (undefined method `product_url' for #<ProductsController:0x0000000002a968>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^
+Did you mean?  products_url):
+  
+app/controllers/products_controller.rb:10:in `update'
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-07-05 21:41:45 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [54 times] (Duration: 7.1ms | Allocations: 8532)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.4ms | Allocations: 121)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 9.5ms | Allocations: 13358)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 9.6ms | Allocations: 13458)
+Completed 200 OK in 10ms (Views: 9.9ms | Allocations: 13785)
+
+
+Started PATCH "/api/products/2" for 127.0.0.1 at 2022-07-05 21:42:43 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce", "id"=>"2", "product"=>{"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mProduct Update (0.1ms)[0m  [1m[33mUPDATE "products" SET "image" = ?, "name" = ?, "price" = ?, "quantity" = ?, "description" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["image", "Foto 2"], ["name", "Brigadeiro"], ["price", "R$ 2,00"], ["quantity", "10 und."], ["description", "Aquele doce"], ["updated_at", "2022-07-06 00:42:43.598214"], ["id", 2]]
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mTRANSACTION (68.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 69.2ms | Allocations: 8755)
+
+
+  
+NoMethodError (undefined method `product_url' for #<ProductsController:0x00000000030020>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^
+Did you mean?  products_url):
+  
+app/controllers/products_controller.rb:10:in `update'
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-07-05 21:46:58 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [54 times] (Duration: 7.9ms | Allocations: 8530)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.3ms | Allocations: 121)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 10.1ms | Allocations: 13354)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 10.2ms | Allocations: 13453)
+Completed 200 OK in 11ms (Views: 10.5ms | Allocations: 13777)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2022-07-05 21:59:00 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_route.html.erb [55 times] (Duration: 9.0ms | Allocations: 9124)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionpack-7.0.2.3/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 1.2ms | Allocations: 1047)
+  Rendered /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 13.0ms | Allocations: 15616)
+  Rendered layout /home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.2.3/lib/rails/templates/layouts/application.html.erb (Duration: 13.4ms | Allocations: 15963)
+Completed 200 OK in 18ms (Views: 14.9ms | ActiveRecord: 0.0ms | Allocations: 19150)
+
+
+Started PATCH "/api/products/2" for 127.0.0.1 at 2022-07-05 21:59:15 -0300
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce", "id"=>"2", "product"=>{"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.5ms | Allocations: 9772)
+
+
+  
+ActionView::MissingTemplate (Missing template products/show, application/show with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+
+Searched in:
+  * "/home/felipe/docemania/docemania_api/app/views"
+  * "/home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/devise-4.8.1/app/views"
+  * "/home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actiontext-7.0.2.3/app/views"
+  * "/home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionmailbox-7.0.2.3/app/views"
+
+Did you mean?  rails/conductor/action_mailbox/inbound_emails/show
+               users/show
+               devise/confirmations/new
+               rails/conductor/action_mailbox/inbound_emails/new
+               devise/registrations/new
+               rails/conductor/action_mailbox/inbound_emails/sources/new):
+  
+app/controllers/products_controller.rb:10:in `update'
+Started PUT "/api/products/2" for 127.0.0.1 at 2022-07-05 21:59:39 -0300
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce", "id"=>"2", "product"=>{"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 2195)
+
+
+  
+ActionView::MissingTemplate (Missing template products/show, application/show with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+
+Searched in:
+  * "/home/felipe/docemania/docemania_api/app/views"
+  * "/home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/devise-4.8.1/app/views"
+  * "/home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actiontext-7.0.2.3/app/views"
+  * "/home/felipe/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/actionmailbox-7.0.2.3/app/views"
+
+Did you mean?  rails/conductor/action_mailbox/inbound_emails/show
+               users/show
+               devise/confirmations/new
+               rails/conductor/action_mailbox/inbound_emails/new
+               devise/registrations/new
+               rails/conductor/action_mailbox/inbound_emails/sources/new):
+  
+app/controllers/products_controller.rb:10:in `update'
+Started PUT "/api/products/2" for 127.0.0.1 at 2022-07-05 22:01:30 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce", "id"=>"2", "product"=>{"image"=>"Foto 2", "name"=>"Brigadeiro", "price"=>"R$ 2,00", "quantity"=>"10 und.", "description"=>"Aquele doce"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 3873)
+
+
+Started PUT "/api/products/2" for 127.0.0.1 at 2022-07-05 22:02:10 -0300
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 3", "name"=>"Beijinho", "id"=>"2", "product"=>{"image"=>"Foto 3", "name"=>"Beijinho"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mProduct Update (0.2ms)[0m  [1m[33mUPDATE "products" SET "image" = ?, "name" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["image", "Foto 3"], ["name", "Beijinho"], ["updated_at", "2022-07-06 01:02:10.474294"], ["id", 2]]
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mTRANSACTION (52.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+Completed 200 OK in 57ms (Views: 0.3ms | ActiveRecord: 53.2ms | Allocations: 2800)
+
+
+Started PUT "/api/products/2" for 127.0.0.1 at 2022-07-05 22:02:39 -0300
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 3", "name"=>"Beijinho", "quantity"=>"", "id"=>"2", "product"=>{"image"=>"Foto 3", "name"=>"Beijinho", "quantity"=>""}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mProduct Update (0.2ms)[0m  [1m[33mUPDATE "products" SET "quantity" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["quantity", ""], ["updated_at", "2022-07-06 01:02:39.511864"], ["id", 2]]
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mTRANSACTION (71.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+Completed 200 OK in 78ms (Views: 0.7ms | ActiveRecord: 71.5ms | Allocations: 2508)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-07-05 22:03:35 -0300
+Processing by ProductsController#index as JSON
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/products_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.2ms | Allocations: 1029)
+
+
+Started GET "/api/product/1" for 127.0.0.1 at 2022-07-05 22:04:25 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/api/product/1"):
+  
+Started GET "/api/products/1" for 127.0.0.1 at 2022-07-05 22:04:30 -0300
+Processing by ProductsController#show as JSON
+  Parameters: {"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados.", "id"=>"1", "product"=>{"image"=>"fotinha", "name"=>"Docinho", "price"=>"R$ 2,00", "quantity"=>"100 und.", "description"=>"Doce artesenal feito com ingredientes selecionados."}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 678)
+
+
+Started POST "/api/products" for 127.0.0.1 at 2022-07-05 22:06:13 -0300
+Processing by ProductsController#create as JSON
+  Parameters: {"image"=>"dceira", "name"=>"Casadinho", "price"=>"R$ 3,00", "quantity"=>"2 und.", "description"=>"Doce misto de brigadeiro e ninho", "product"=>{"image"=>"dceira", "name"=>"Casadinho", "price"=>"R$ 3,00", "quantity"=>"2 und.", "description"=>"Doce misto de brigadeiro e ninho"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:19:in `create'
+  [1m[36mProduct Create (0.2ms)[0m  [1m[32mINSERT INTO "products" ("image", "name", "price", "quantity", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["image", "dceira"], ["name", "Casadinho"], ["price", "R$ 3,00"], ["quantity", "2 und."], ["description", "Doce misto de brigadeiro e ninho"], ["created_at", "2022-07-06 01:06:13.371354"], ["updated_at", "2022-07-06 01:06:13.371354"]]
+  ↳ app/controllers/products_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (67.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:19:in `create'
+Completed 201 Created in 72ms (Views: 0.6ms | ActiveRecord: 67.9ms | Allocations: 2147)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-07-05 22:06:20 -0300
+Processing by ProductsController#index as JSON
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/products_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 1115)
+
+
+Started PUT "/api/products/3" for 127.0.0.1 at 2022-07-05 22:07:01 -0300
+Processing by ProductsController#update as JSON
+  Parameters: {"image"=>"Foto 4", "id"=>"3", "product"=>{"image"=>"Foto 4"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:32:in `set_product'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mProduct Update (0.2ms)[0m  [1m[33mUPDATE "products" SET "image" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["image", "Foto 4"], ["updated_at", "2022-07-06 01:07:01.468920"], ["id", 3]]
+  ↳ app/controllers/products_controller.rb:9:in `update'
+  [1m[36mTRANSACTION (61.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:9:in `update'
+Completed 200 OK in 67ms (Views: 0.7ms | ActiveRecord: 61.8ms | Allocations: 2490)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2022-07-05 22:07:06 -0300
+Processing by ProductsController#index as JSON
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/products_controller.rb:5:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1115)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-07-11 22:41:36 -0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 422 Unprocessable Entity in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 2922)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-07-11 22:42:26 -0300
+Processing by Devise::RegistrationsController#create as JSON
+  Parameters: {"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87", "registration"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 422 Unprocessable Entity in 16ms (Views: 6.1ms | ActiveRecord: 0.5ms | Allocations: 11330)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2022-07-11 22:44:38 -0300
+Processing by Devise::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "registration"=>{"user"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}}
+[31mUnpermitted parameters: :name, :phone, :cpf. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007f048e80be68>, params: {"user"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}, "format"=>:json, "controller"=>"devise/registrations", "action"=>"create", "registration"=>{"user"=>{"name"=>"Felipe", "email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "phone"=>"+55 61 98444-6914", "cpf"=>"06233322-87"}}} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "phone", "cpf", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", nil], ["phone", nil], ["cpf", nil], ["created_at", "2022-07-12 01:44:38.884150"], ["updated_at", "2022-07-12 01:44:38.884150"], ["email", "fgscarvalho97@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil]]
+  [1m[36mTRANSACTION (67.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering devise/registrations/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.6ms | Allocations: 392)
+  Rendered devise/registrations/create.json.jbuilder (Duration: 1.9ms | Allocations: 1071)
+Completed 200 OK in 282ms (Views: 6.1ms | ActiveRecord: 67.7ms | Allocations: 10681)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-07-11 22:46:06 -0300
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  Rendering devise/sessions/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 157)
+  Rendered devise/sessions/create.json.jbuilder (Duration: 0.6ms | Allocations: 481)
+Completed 200 OK in 190ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 1776)
+
+
+Started GET "/api/user/:3" for 127.0.0.1 at 2022-07-11 22:49:02 -0300
+  
+ActionController::RoutingError (uninitialized constant UserController
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  UsersController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/api/user/3" for 127.0.0.1 at 2022-07-11 22:49:06 -0300
+  
+ActionController::RoutingError (uninitialized constant UserController
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  UsersController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/api/users/3" for 127.0.0.1 at 2022-07-11 22:50:05 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.8ms | Allocations: 5103)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:50:34 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.1ms | Allocations: 559)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:50:50 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.1ms | Allocations: 559)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:51:48 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 247)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-07-11 22:52:03 -0300
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  Rendering devise/sessions/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 173)
+  Rendered devise/sessions/create.json.jbuilder (Duration: 0.4ms | Allocations: 387)
+Completed 200 OK in 190ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1964)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:52:22 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 155)
+  Rendered users/show.json.jbuilder (Duration: 2.1ms | Allocations: 1761)
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.2ms | Allocations: 2886)
+
+
+Started GET "/api/users/3" for 127.0.0.1 at 2022-07-11 22:52:38 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:29:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 112)
+  Rendered users/show.json.jbuilder (Duration: 2.5ms | Allocations: 1173)
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.2ms | Allocations: 1923)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:54:43 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | Allocations: 948)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-07-11 22:54:52 -0300
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  Rendering devise/sessions/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 173)
+  Rendered devise/sessions/create.json.jbuilder (Duration: 0.5ms | Allocations: 386)
+Completed 200 OK in 193ms (Views: 1.1ms | ActiveRecord: 0.7ms | Allocations: 5415)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:55:03 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 155)
+  Rendered users/show.json.jbuilder (Duration: 2.2ms | Allocations: 1698)
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 2.8ms | ActiveRecord: 0.2ms | Allocations: 2312)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-07-11 22:56:55 -0300
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  Rendering devise/sessions/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 173)
+  Rendered devise/sessions/create.json.jbuilder (Duration: 0.4ms | Allocations: 386)
+Completed 200 OK in 194ms (Views: 1.4ms | ActiveRecord: 0.6ms | Allocations: 5402)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:57:08 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 306)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:57:32 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 140)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 22:57:51 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 140)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-07-11 22:59:57 -0300
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  Rendering devise/sessions/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 150)
+  Rendered devise/sessions/create.json.jbuilder (Duration: 0.4ms | Allocations: 334)
+Completed 200 OK in 189ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 1202)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 23:00:06 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 155)
+  Rendered users/show.json.jbuilder (Duration: 1.9ms | Allocations: 1625)
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 2128)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-11 23:04:24 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+  Rendering users/show.json.jbuilder
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:34:in `current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:34:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 168)
+  Rendered users/show.json.jbuilder (Duration: 6.0ms | Allocations: 5155)
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 6.6ms | ActiveRecord: 0.9ms | Allocations: 6422)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-07-12 14:46:21 -0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  Rendering devise/sessions/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.6ms | Allocations: 427)
+  Rendered devise/sessions/create.json.jbuilder (Duration: 1.5ms | Allocations: 1122)
+Completed 200 OK in 202ms (Views: 2.9ms | ActiveRecord: 0.9ms | Allocations: 11555)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-12 14:46:42 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+  Rendering users/show.json.jbuilder
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:34:in `current_user'
+  Rendered users/_user.json.jbuilder (Duration: 0.4ms | Allocations: 234)
+  Rendered users/show.json.jbuilder (Duration: 5.0ms | Allocations: 2174)
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 5.5ms | ActiveRecord: 0.2ms | Allocations: 3092)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-12 14:57:43 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | Allocations: 952)
+
+
+Started POST "/api/users/login" for 127.0.0.1 at 2022-07-12 14:57:48 -0300
+Processing by SessionsController#create as JSON
+  Parameters: {"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"fgscarvalho97@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fgscarvalho97@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+  Rendering devise/sessions/create.json.jbuilder
+  Rendered users/_user.json.jbuilder (Duration: 0.2ms | Allocations: 170)
+  Rendered devise/sessions/create.json.jbuilder (Duration: 0.6ms | Allocations: 533)
+Completed 200 OK in 193ms (Views: 1.4ms | ActiveRecord: 0.5ms | Allocations: 5214)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-12 14:58:02 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 190)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2022-07-12 15:01:44 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | Allocations: 960)
+
+
+Started GET "/api/users/3" for 127.0.0.1 at 2022-07-12 15:06:38 -0300
+Processing by UsersController#show as JSON
+  Parameters: {"id"=>"3"}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | Allocations: 138)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddRoleToUsers (20220804204925)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "role" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220804204925"]]
+  [1m[36mTRANSACTION (222.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
