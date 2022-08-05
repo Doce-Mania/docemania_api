@@ -2,12 +2,15 @@ class ApplicationController < ActionController::API
   respond_to :json
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user
   
+  def is_admin?
+    return @current_user.role == 'admin'
+  end
+
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :phone, :cpf ])
   end
 
   def authenticate_user
@@ -37,5 +40,4 @@ class ApplicationController < ActionController::API
   def signed_in?
     @current_user_id.present?
   end
-
 end

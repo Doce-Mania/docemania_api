@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :products
     devise_for :users, controllers: { sessions: :sessions },
                        path_names: { sign_in: :login }
-    resources :users, only: [:show, :update] do 
+    resources :users, only: [:show, :update] do
       resources :addresses
     end
   end

@@ -17,9 +17,6 @@ class AddressesController < ApplicationController
   def create
 
     @address = Address.new(address_params)
-    puts "*****************************"
-    pp @address
-    puts "*****************************"
     if @address.save
       render json: @address, status: :created, location: @address
     else
