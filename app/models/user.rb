@@ -11,8 +11,15 @@ class User < ApplicationRecord
   
  # jwt is type of token, user attentication 
   def generate_jwt
-    JWT.encode({ id: id,
-                exp: 5.minutes.from_now.to_i },
-               nil)
+    private_key = OpenSSL::PKey::RSA.new ENV["JWT_USER_PRIVATE_KEY"]
+
+    JWT.encode(
+      {
+        id: id,
+        exp: 5.hours.from_now.to_i
+      },
+      private_key,
+      'RS256'
+    )
   end
 end
