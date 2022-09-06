@@ -15,33 +15,27 @@ class ApplicationController < ActionController::API
 
   def authenticate_user
     public_key = OpenSSL::PKey::RSA.new ENV["JWT_USER_PUBLIC_KEY"]
-    puts "%"*50
-    puts public_key
-    puts "%"*50
     if request.headers['Authorization'].present?
-      decoded_token = JWT.decode request.headers['Authorization'], public_key, true, { algorithm: 'RS256' }
-      puts "#"*50
-      puts decoded_token
-      puts "#"*50
-      if decoded_token.first['exp'] >= DateTime.now.to_i
-        if decoded_token.first['id'].to_s == params[:id]
-          @current_user_id = decoded_token.first['id']
+      begin
+        decoded_token = JWT.decode request.headers['Authorization'], public_key, true, { algorithm: 'RS256' }
+        if decoded_token.first['exp'] >= DateTime.now.to_i
+          if decoded_token.first['id'].to_s == params[:id]
+            @current_user_id = decoded_token.first['id']
+          else
+            @current_user_id = nil
+            render json: { error: 'Unauthorized!' }, status: :unauthorized
+          end
         else
-          @current_user_id = nil
-          render json: { error: 'Unauthorized!' }, status: :unauthorized
+          render json: { error: 'Token expired!' }, status: :unauthorized
         end
-      else
-        render json: { error: 'Token expired!' }, status: :unauthorized
+      rescue
+        render json: { error: 'Unauthorized!' }, status: :unauthorized
       end
     end
   end
   
   def authenticate_user!(options = {})
     head :unauthorized unless signed_in?
-  end
-
-  def current_user
-    @current_user ||= super || User.find(@current_user_id)
   end
 
   def signed_in?
