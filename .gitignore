@@ -1,0 +1,12 @@
+tmp/
+tmp/.*
+tmp/**/*
+/tmp
+db/*.sqlite3
+db/*.sqlite3*
+log/*.log
+log/*.out
+log/*.pid
+log/**/*
+/log/*
+!/log/.keep
